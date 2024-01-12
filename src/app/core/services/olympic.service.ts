@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { catchError, tap, map, filter } from 'rxjs/operators';
 import { Olympic } from '../models/Olympic';
+import { Participation } from '../models/Participation';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +29,16 @@ export class OlympicService {
 
   getOlympics() {
     return this.olympics$.asObservable();
+  }
+
+  getOlympicsForChart(): Observable<any> {
+    return this.getOlympics().pipe(
+      filter(olympics => olympics && olympics.length > 0), // ignore empty values
+      tap(olympics => console.log(olympics)), // log the data
+      map((olympics: Olympic[]) => olympics.map((olympic: Olympic) => ({
+        name: olympic.country,
+        value: olympic.participations.reduce((total: number, p: Participation) => total + p.medalsCount, 0)
+      })))
+    );
   }
 }
