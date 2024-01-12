@@ -1,7 +1,8 @@
 <ngx-charts-pie-chart 
     [results]="olympics$ | async"
-    [legend]="true"
+    [legend]="false"
     [legendTitle]="'Olympic Participation Report'" 
     [view]="[1200,400]"
-    [labels]="true" >
+    [labels]="true"
+    [customColors]="customColors" >
 </ngx-charts-pie-chart>

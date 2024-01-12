@@ -32,7 +32,7 @@ export class OlympicService {
     return this.olympics$.asObservable();
   }
 
-
+  // Get olympic by id for PieChartSample
   getOlympicsForChart(): Observable<any> {
     return this.getOlympics().pipe(
       filter(olympics => olympics && olympics.length > 0), // ignore empty values
@@ -43,4 +43,23 @@ export class OlympicService {
       })))
     );
   }
+
+  // Get olympic by country's id
+  getOlympicByCountryId(id: number): Observable<Olympic | undefined> {
+    return this.olympics$.pipe(
+      map((olympics: Olympic[]) =>
+        olympics.find((olympic: Olympic) => olympic.id === id)
+      )
+    );
+  }
+
+  // Get olympic by country's name
+  getOlympicByCountryName(name: string): Observable<Olympic | undefined> {
+    return this.olympics$.pipe(
+      map((olympics: Olympic[]) =>
+        olympics.find((olympic: Olympic) => olympic.country === name)
+      )
+    );
+  }
+
 }

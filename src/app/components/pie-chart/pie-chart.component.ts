@@ -16,4 +16,27 @@ export class PieChartComponent implements OnInit {
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympicsForChart();
   }
+
+  customColors = [
+    {
+      name: 'Italy',
+      value: '#956065'
+    },
+    {
+      name: 'Spain',
+      value: '#b8cbe7'
+    },
+    {
+      name: 'United States',
+      value: '#89a1db'
+    },
+    {
+      name: 'Germany',
+      value: '#793d52'
+    },
+    {
+      name: 'France',
+      value: '#9780a1'
+    },
+  ];
 }
