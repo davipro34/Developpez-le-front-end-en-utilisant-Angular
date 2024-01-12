@@ -1,1 +1,7 @@
-<p>dashboard works!</p>
+<ngx-charts-pie-chart 
+    [results]="olympics$ | async"
+    [legend]="true"
+    [legendTitle]="'Olympic Participation Report'" 
+    [view]="[1200,400]"
+    [labels]="true" >
+</ngx-charts-pie-chart>
