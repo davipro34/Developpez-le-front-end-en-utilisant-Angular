@@ -27,9 +27,11 @@ export class OlympicService {
     );
   }
 
-  getOlympics() {
+  // Get all datas
+  getOlympics(): Observable<Olympic[]> {
     return this.olympics$.asObservable();
   }
+
 
   getOlympicsForChart(): Observable<any> {
     return this.getOlympics().pipe(
