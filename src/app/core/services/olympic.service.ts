@@ -53,15 +53,4 @@ export class OlympicService {
       })))
     );
   }
-
-  // Get olympic by id for PieChartSample
-  getOlympicsForChart(): Observable<PieChartData[]> {
-    return this.getOlympics().pipe(
-      tap(olympics => console.log(olympics)), // log the data
-      map((olympics: Olympic[]) => olympics.map((olympic: Olympic) => ({
-        name: olympic.country,
-        value: olympic.participations.reduce((total: number, p: Participation) => total + p.medalsCount, 0)
-      })))
-    );
-  }
 }
