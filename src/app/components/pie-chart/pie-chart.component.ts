@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { PieChartData } from 'src/app/core/models/PieChartData';
 import { OlympicService } from 'src/app/core/services/olympic.service';
-
 
 @Component({
   selector: 'app-pie-chart',
@@ -9,12 +9,14 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
   styleUrls: ['./pie-chart.component.scss']
 })
 export class PieChartComponent implements OnInit {
-  public olympics$: Observable<any> = of(null);
+  pieChartData$: Observable<PieChartData[]> = of([]);
 
-  constructor(private olympicService: OlympicService) {}
+  constructor (private olympicService: OlympicService) {}
 
   ngOnInit(): void {
-    this.olympics$ = this.olympicService.getOlympicsForChart();
+    this.olympicService.getPieChartData().subscribe((data: PieChartData[]) => {
+      this.pieChartData$ = of(data);
+    });
   }
 
   customColors = [
