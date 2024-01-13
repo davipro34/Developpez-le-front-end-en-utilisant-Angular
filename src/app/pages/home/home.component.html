@@ -2,7 +2,12 @@
   <h2> Medals per Country </h2>
 </div>
 <p>{{ (olympics$ | async)?.length }} data loaded</p>
-<!-- <hr />
-<app-pie-chart-sample></app-pie-chart-sample> -->
 <hr />
 <app-pie-chart></app-pie-chart>
+<hr />
+<div>
+  <a routerLink="details"> Aller vers la page Détails</a>
+</div>
+<div>
+  <button (click)="onGoDetails()"> Aller vers la page Détails</button>
+</div>

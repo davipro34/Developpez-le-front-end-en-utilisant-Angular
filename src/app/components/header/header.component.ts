@@ -7,5 +7,4 @@ import { Header } from 'src/app/core/models/Header';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @Input() header!: Header;
 }

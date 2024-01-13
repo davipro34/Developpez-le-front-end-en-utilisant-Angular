@@ -10,10 +10,11 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
 import { HeaderComponent } from './components/header/header.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
 import { LineChartComponent } from './components/line-chart/line-chart.component';
-import { PieChartSampleComponent } from './components/pie-chart-sample/pie-chart-sample.component';
+import { DetailsComponent } from './pages/details/details.component';
+import { CountryDetailsComponent } from './pages/country-details/country-details.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent, HeaderComponent, PieChartComponent, LineChartComponent, PieChartSampleComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, HeaderComponent, PieChartComponent, LineChartComponent, DetailsComponent, CountryDetailsComponent],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule, NgxChartsModule],
   providers: [],
   bootstrap: [AppComponent],

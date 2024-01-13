@@ -1,15 +1,17 @@
 
-charts {
+#charts {
   display: flex;
+  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   height: 100%;
+  box-shadow: lightgray 4px 4px 20px;
 }
 
 .chart-label {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 ::ng-deep .ngx-charts text {
-  font-size: 20px !important;
+  font-size: 16px !important;
 }
