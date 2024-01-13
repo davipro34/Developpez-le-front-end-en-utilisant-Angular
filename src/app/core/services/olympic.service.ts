@@ -5,6 +5,7 @@ import { catchError, tap, map, filter } from 'rxjs/operators';
 import { Olympic } from '../models/Olympic';
 import { Participation } from '../models/Participation';
 import { PieChartData } from 'src/app/core/models/PieChartData';
+import { LineChartData } from 'src/app/core/models/LineChartData';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +52,29 @@ export class OlympicService {
         name: olympic.country,
         value: olympic.participations.reduce((total: number, p: Participation) => total + p.medalsCount, 0)
       })))
+    );
+  }
+  getLineChartData(): Observable<LineChartData[]> {
+    return this.getOlympics().pipe(
+      map(olympics => {
+        return olympics.map(olympic => ({
+          name: olympic.country,
+          series: olympic.participations.map(participation => ({
+            name: String(participation.year),
+            value: participation.medalsCount
+          }))
+        }));
+      })
+    );
+  }
+  /**
+   * Retrieves the Olympic country with the specified ID.
+   * @param countryId The ID of the country to retrieve.
+   * @returns An Observable that emits the Olympic country with the specified ID.
+   */
+  getOlympicsCountryById(countryId: number): Observable<Olympic[]> {
+    return this.getOlympics().pipe(
+      map((olympics: Olympic[]) => olympics.filter((olympic: Olympic) => olympic.id === countryId))
     );
   }
 }
