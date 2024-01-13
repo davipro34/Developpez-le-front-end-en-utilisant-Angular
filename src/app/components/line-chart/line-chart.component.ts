@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ScaleType, Color } from '@swimlane/ngx-charts';
 import { Observable, of } from 'rxjs';
 import { LineChartData } from 'src/app/core/models/LineChartData';

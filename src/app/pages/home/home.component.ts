@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   }
   
   onGoDetails(): void {
-    this.router.navigateByUrl('details');
+    this.router.navigateByUrl('CountryDetails');
   }
-
 }

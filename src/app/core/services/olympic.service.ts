@@ -13,6 +13,8 @@ import { LineChartData } from 'src/app/core/models/LineChartData';
 export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
   private olympics$ = new BehaviorSubject<Olympic[]>([]);
+  private countryIdSource = new BehaviorSubject<string>('');
+  currentCountryId = this.countryIdSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -76,5 +78,9 @@ export class OlympicService {
     return this.getOlympics().pipe(
       map((olympics: Olympic[]) => olympics.filter((olympic: Olympic) => olympic.id === countryId))
     );
+  }
+
+  changeCountryId(countryId: string) {
+    this.countryIdSource.next(countryId);
   }
 }
