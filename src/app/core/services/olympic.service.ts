@@ -48,10 +48,33 @@ export class OlympicService {
    */
   getPieChartData(): Observable<PieChartData[]> {
     return this.getOlympics().pipe(
-      map((olympicsPie: Olympic[]) => olympicsPie.map((olympicObject: Olympic) => ({
-        name: olympicObject.country,
-        value: olympicObject.participations.reduce((total: number, p: Participation) => total + p.medalsCount, 0)
-      })))
+      // tap((olympicsPie: Olympic[]) => {
+      //   console.log('Olympics Pie:', olympicsPie);
+      // }),
+      map((olympicsPie: Olympic[]) => olympicsPie.map((olympicObject: Olympic) => {
+        // console.log('Olympic Object:', olympicObject);
+        return {
+          name: olympicObject.country,
+          value: olympicObject.participations.reduce((total: number, p: Participation) => {
+            // console.log('Participation:', p);
+            return total + p.medalsCount;
+          }, 0)
+        };
+      }))
     );
   }
+
+  getOlympicsByCountryName(countryName: string): Observable<LineChartData[]> {
+    return this.getOlympics().pipe(
+      map(olympicsLine => 
+        olympicsLine
+          .filter(olympicObject => olympicObject.country === countryName)
+          .map(olympicObject => ({
+            name: olympicObject.country,
+            series: olympicObject.participations.map(participationObject => ({name: String(participationObject.year), value: participationObject.medalsCount}))
+          }))
+      )
+    );
+  }
+
 }

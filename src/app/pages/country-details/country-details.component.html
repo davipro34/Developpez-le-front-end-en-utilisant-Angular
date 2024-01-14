@@ -1,4 +1,18 @@
 <p>CountryDetails works!</p>
 <div>
+  <ngx-charts-line-chart
+  [results]="lineChartData"
+  [view]="[700, 400]"
+  [xAxis]="true"
+  [yAxis]="true"
+  [legend]="false"
+  [showXAxisLabel]="true"
+  [showYAxisLabel]="true"
+  [xAxisLabel]="'Dates'"
+  [yAxisLabel]="'Medals'">
+  </ngx-charts-line-chart>
+</div>
+
+<div>
   <button (click)="onGoHome()"> Aller vers la page Home</button>
 </div>
