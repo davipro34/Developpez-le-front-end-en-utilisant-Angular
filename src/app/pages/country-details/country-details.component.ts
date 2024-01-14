@@ -12,6 +12,7 @@ import { ScaleType } from '@swimlane/ngx-charts';
 })
 export class CountryDetailsComponent implements OnInit {
   lineChartData!: LineChartData[];
+  countryName: string = 'France'; // Replace 'value' with the desired country name
 
   constructor(private olympicService: OlympicService, private router: Router) {}
   
@@ -31,8 +32,8 @@ export class CountryDetailsComponent implements OnInit {
    * Function to call, with countryName parameter, to view the result of getOlympicsByCountryName in the graphic.
    * TODO = Obtain countryName value from event (click) of pie chart
    */
-    const countryName = 'Italy'; // Replace 'value' with the name of the country you want to test
-    this.olympicService.getOlympicsByCountryName(countryName).subscribe(data => {
+    //const countryName = 'Italy'; // Replace 'value' with the name of the country you want to test
+    this.olympicService.getOlympicsByCountryName(this.countryName).subscribe(data => {
       this.lineChartData = data;
     });
 
