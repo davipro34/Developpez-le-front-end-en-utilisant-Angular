@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { LineChartData } from 'src/app/core/models/LineChartData';
-import { Color } from '@swimlane/ngx-charts';
-import { ScaleType } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-country-details',
