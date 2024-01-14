@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { LineChartData } from 'src/app/core/models/LineChartData';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-country-details',
@@ -11,6 +12,9 @@ import { LineChartData } from 'src/app/core/models/LineChartData';
 export class CountryDetailsComponent implements OnInit {
   lineChartData!: LineChartData[];
   countryName: string = 'France'; // Replace 'value' with the desired country name
+  numberOfParticipation!: number;
+  totalNumberOfMedals!: number;
+  totalNumberOfAthletes!: number;
 
   constructor(private olympicService: OlympicService, private router: Router) {}
   
@@ -19,11 +23,11 @@ export class CountryDetailsComponent implements OnInit {
     /**
    * Test function to view the result of getOlympicsByCountryName in the console.
    */
-    const testCountryName = 'France'; // Replace 'value' with the name of the country you want to test
-    this.olympicService.getOlympicsByCountryName(testCountryName).subscribe({
-      next: (data: any) => console.log(data),
-      error: error => console.error(error)
-    });
+    // const testCountryName = 'France'; // Replace 'value' with the name of the country you want to test
+    // this.olympicService.getOlympicsByCountryName(testCountryName).subscribe({
+    //   next: (data: any) => console.log(data),
+    //   error: error => console.error(error)
+    // });
     
         
     /**
@@ -31,8 +35,28 @@ export class CountryDetailsComponent implements OnInit {
    * TODO = Obtain countryName value from event (click) of pie chart
    */
     //const countryName = 'Italy'; // Replace 'value' with the name of the country you want to test
-    this.olympicService.getOlympicsByCountryName(this.countryName).subscribe(data => {
+    this.olympicService.getOlympicsByCountryName(this.countryName).pipe(
+      // tap(data => console.log(data)) // To view the result in the console.
+    ).subscribe(data => {
       this.lineChartData = data;
+    });
+
+    this.olympicService.getParticipationByCountry(this.countryName).pipe(
+      // tap(data => console.log(data)) // To view the result in the console.
+    ).subscribe(data => {
+      this.numberOfParticipation = data;
+    });
+
+    this.olympicService.getTotalMedalsByCountry(this.countryName).pipe(
+      // tap(data => console.log(data)) // To view the result in the console.
+    ).subscribe(data => {
+      this.totalNumberOfMedals = data;
+    });
+
+    this.olympicService.getTotalAthletesByCountry(this.countryName).pipe(
+      // tap(data => console.log(data)) // To view the result in the console.
+    ).subscribe(data => {
+      this.totalNumberOfAthletes = data;
     });
 
   }

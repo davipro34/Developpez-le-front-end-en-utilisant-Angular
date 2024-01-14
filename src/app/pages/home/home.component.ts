@@ -13,6 +13,8 @@ import { PieChartData } from 'src/app/core/models/PieChartData';
 export class HomeComponent implements OnInit {
   public olympics$: Observable<Olympic[]> = of([]);
   pieChartData$: Observable<PieChartData[]> = of([]);
+  numberOfJos!: number;
+  numberOfCountries!: number;
 
   constructor(private olympicService: OlympicService, private router: Router) {}
 
@@ -21,32 +23,15 @@ export class HomeComponent implements OnInit {
     this.olympicService.getPieChartData().subscribe((data: PieChartData[]) => {
       this.pieChartData$ = of(data);
     });
+    this.olympicService.getTotalJos().subscribe(data => {
+      this.numberOfJos = data;
+    });
+    this.olympicService.getTotalCountries().subscribe(data => {
+      this.numberOfCountries = data;
+    });
   }
 
   onGoDetails(): void {
     this.router.navigateByUrl('CountryDetails');
   }
-
-  customColors = [
-    {
-      name: 'Italy',
-      value: '#956065'
-    },
-    {
-      name: 'Spain',
-      value: '#b8cbe7'
-    },
-    {
-      name: 'United States',
-      value: '#89a1db'
-    },
-    {
-      name: 'Germany',
-      value: '#793d52'
-    },
-    {
-      name: 'France',
-      value: '#9780a1'
-    },
-  ];
 }

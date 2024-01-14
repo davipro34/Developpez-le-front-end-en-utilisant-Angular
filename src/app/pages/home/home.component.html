@@ -1,5 +1,7 @@
 <div class="subtitle">
   <h2> Medals per Country </h2>
+  <p>Number of JOs {{ numberOfJos }}</p>
+  <p>Number of Countries {{ numberOfCountries }}</p>
 </div>
 <p>{{ (olympics$ | async)?.length }} data loaded</p>
 <hr />
@@ -10,7 +12,6 @@
     [legendTitle]="'Olympic Participation Report'" 
     [view]="[1200,400]"
     [labels]="true"
-    [customColors]="customColors"
   >
     <ng-template #tooltipTemplate let-model="model">
       <div class="chart-label">{{ model.name }}</div>
