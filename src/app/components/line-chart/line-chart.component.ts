@@ -15,14 +15,5 @@ export class LineChartComponent implements OnInit {
   constructor (private olympicService: OlympicService) {}
 
   ngOnInit(): void {
-    this.olympicService.getLineChartData().subscribe((data: LineChartData[]) => {
-      this.lineChartData$ = of(data);
-    });
   }
-  colorScheme: Color = {
-    name: 'custom',
-    selectable: true,
-    group: ScaleType.Ordinal,
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
 }

@@ -13,8 +13,6 @@ import { LineChartData } from 'src/app/core/models/LineChartData';
 export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
   private olympics$ = new BehaviorSubject<Olympic[]>([]);
-  private countryIdSource = new BehaviorSubject<string>('');
-  currentCountryId = this.countryIdSource.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -50,37 +48,10 @@ export class OlympicService {
    */
   getPieChartData(): Observable<PieChartData[]> {
     return this.getOlympics().pipe(
-      map((olympics: Olympic[]) => olympics.map((olympic: Olympic) => ({
-        name: olympic.country,
-        value: olympic.participations.reduce((total: number, p: Participation) => total + p.medalsCount, 0)
+      map((olympicsPie: Olympic[]) => olympicsPie.map((olympicObject: Olympic) => ({
+        name: olympicObject.country,
+        value: olympicObject.participations.reduce((total: number, p: Participation) => total + p.medalsCount, 0)
       })))
     );
-  }
-  getLineChartData(): Observable<LineChartData[]> {
-    return this.getOlympics().pipe(
-      map(olympics => {
-        return olympics.map(olympic => ({
-          name: olympic.country,
-          series: olympic.participations.map(participation => ({
-            name: String(participation.year),
-            value: participation.medalsCount
-          }))
-        }));
-      })
-    );
-  }
-  /**
-   * Retrieves the Olympic country with the specified ID.
-   * @param countryId The ID of the country to retrieve.
-   * @returns An Observable that emits the Olympic country with the specified ID.
-   */
-  getOlympicsCountryById(countryId: number): Observable<Olympic[]> {
-    return this.getOlympics().pipe(
-      map((olympics: Olympic[]) => olympics.filter((olympic: Olympic) => olympic.id === countryId))
-    );
-  }
-
-  changeCountryId(countryId: string) {
-    this.countryIdSource.next(countryId);
   }
 }

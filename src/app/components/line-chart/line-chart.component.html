@@ -1,17 +1,6 @@
 <p>line-chart works!</p>
 <div id="charts">
   <ng-container *ngFor="let chartData of lineChartData$ | async">
-    <ngx-charts-line-chart
-      [results]="chartData.series"
-      [view]="[700, 400]"
-      [scheme]="colorScheme"
-      [legend]="true"
-      [showXAxisLabel]="true"
-      [showYAxisLabel]="true"
-      [xAxis]="true"
-      [yAxis]="true"
-      [xAxisLabel]="'Year'"
-      [yAxisLabel]="'Medals'"
-    ></ngx-charts-line-chart>
+    <ngx-charts-line-chart></ngx-charts-line-chart>
   </ng-container>
 </div>
