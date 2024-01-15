@@ -1,7 +1,15 @@
 <div class="subtitle">
   <h2> Medals per Country </h2>
-  <p>Number of JOs {{ numberOfJos }}</p>
-  <p>Number of Countries {{ numberOfCountries }}</p>
+</div>
+<div style="display: flex; justify-content: space-between;">
+  <div class="box">
+    <p>Number of JOs</p>
+    <p>{{ numberOfJos }}</p>
+  </div>
+  <div class="box">
+    <p>Number of Countries</p>
+    <p>{{ numberOfCountries }}</p>
+  </div>
 </div>
 <p>{{ (olympics$ | async)?.length }} data loaded</p>
 <hr />

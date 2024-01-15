@@ -1,13 +1,21 @@
 <div class="subtitle">
   <h2>{{ countryName }}</h2>
-  <p>Number of entries {{ numberOfParticipation }}</p>
-  <p>Total number medals {{ totalNumberOfMedals }}</p>
-  <p>Total number of athletes {{ totalNumberOfAthletes }}</p>
-
-
 </div>
 
-<hr />
+<div style="display: flex; justify-content: space-between;">
+  <div class="box">
+    <p>Number of entries</p>
+    <p>{{ numberOfParticipation }}</p>
+  </div>
+  <div class="box">
+    <p>Total number medals</p>
+    <p>{{ totalNumberOfMedals }}</p>
+  </div>
+  <div class="box">
+    <p>Total number of athletes</p>
+    <p>{{ totalNumberOfAthletes }}</p>
+  </div>
+</div>
 
 <div>
   <ngx-charts-line-chart
