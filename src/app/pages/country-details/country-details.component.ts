@@ -18,6 +18,7 @@ export class CountryDetailsComponent implements OnInit {
   totalNumberOfMedals!: number;
   totalNumberOfAthletes!: number;
   windowWidth = window.innerWidth;
+  errorMessage: string | null = null;
 
   constructor(private olympicService: OlympicService, private router: Router, private route: ActivatedRoute) {}
   
@@ -35,7 +36,11 @@ export class CountryDetailsComponent implements OnInit {
     this.getOlympicsByCountryName(this.countryName).pipe(
       take(1)
     ).subscribe(data => {
-      this.lineChartData = data;
+      if (data.length === 0) {
+        this.errorMessage = 'La page demandée n\'existe pas';
+      } else {
+        this.lineChartData = data;
+      }
     });
     
     // Fetches the number of Olympic participations for a specific country.

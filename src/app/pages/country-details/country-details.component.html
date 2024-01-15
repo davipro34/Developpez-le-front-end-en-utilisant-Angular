@@ -2,37 +2,42 @@
   <h2>{{ countryName }}</h2>
 </div>
 
-<div style="display: flex; justify-content: space-between;">
-  <div class="box">
-    <p>Number of entries</p>
-    <p>{{ numberOfParticipation }}</p>
+<!-- Afficher le message d'erreur si les données sont vides -->
+<div *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<!-- Afficher les détails du pays si les données ne sont pas vides -->
+<div *ngIf="!errorMessage">
+  <div class="row">
+    <div class="box">
+      <p>Total number medals</p>
+      <p>{{ totalNumberOfMedals }}</p>
+    </div>
+    <div class="box">
+      <p>Total number of athletes</p>
+      <p>{{ totalNumberOfAthletes }}</p>
+    </div>
   </div>
-  <div class="box">
-    <p>Total number medals</p>
-    <p>{{ totalNumberOfMedals }}</p>
-  </div>
-  <div class="box">
-    <p>Total number of athletes</p>
-    <p>{{ totalNumberOfAthletes }}</p>
+
+  <div class="row">
+    <div class="chart">
+      <ngx-charts-line-chart
+        [results]="lineChartData"
+        [view]="[windowWidth, 400]"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="false"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Dates'"
+        [yAxisLabel]="'Medals'">
+      </ngx-charts-line-chart>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="chart">
-    <ngx-charts-line-chart
-      [results]="lineChartData"
-      [view]="[windowWidth, 400]"
-      [xAxis]="true"
-      [yAxis]="true"
-      [legend]="false"
-      [showXAxisLabel]="true"
-      [showYAxisLabel]="true"
-      [xAxisLabel]="'Dates'"
-      [yAxisLabel]="'Medals'">
-    </ngx-charts-line-chart>
-  </div>
-</div>
-
+<!-- Le bouton de retour à la page d'accueil est toujours affiché -->
 <div class="box">
   <button (click)="onGoHome()"> Return to Home Page </button>
 </div>
