@@ -1,15 +1,28 @@
-header {
-  text-align: center;
+:host {
+  display: grid;
+  width: 100%;
   background-color: #EEE;
-  margin-bottom: 20px;
-  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
 }
 
 .images {
-  display: flex;
+  display: grid;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
   height: 100%;
-  width: 100%;
+  width: auto;
+}
+
+@media (max-width: 600px) {
+  .images img {
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+  }
 }

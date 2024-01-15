@@ -1,8 +1,13 @@
+:host {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
 .subtitle {
   text-align: center;
   background-color: #ffffff;
   margin-bottom: 20px;
-  padding: 10px;
 }
 
 .chart {
@@ -12,6 +17,7 @@
   align-items: center;
   height: 100%;
   box-shadow: lightgray 4px 4px 20px;
+  margin-top: 20;
 }
 
 .chart-label {
@@ -29,15 +35,9 @@
   flex: 1;
 }
 
-:host {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-}
-
 @media (max-width: 600px) {
   :host {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
