@@ -22,7 +22,7 @@ export class OlympicService {
       tap((value) => this.olympics$.next(value)),
       catchError((error) => {
         this.olympics$.next([]);
-        // Propager l'erreur au GlobalErrorHandler
+        // Propagate error to GlobalErrorHandler
         return throwError(() => new Error(`Error loading initial data: ${error.message}`));
       }),
     );
