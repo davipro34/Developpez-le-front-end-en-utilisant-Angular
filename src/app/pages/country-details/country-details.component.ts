@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { OlympicService } from 'src/app/core/services/olympic.service';
@@ -16,6 +16,7 @@ export class CountryDetailsComponent implements OnInit {
   numberOfParticipation!: number;
   totalNumberOfMedals!: number;
   totalNumberOfAthletes!: number;
+  windowWidth = window.innerWidth;
 
   constructor(private olympicService: OlympicService, private router: Router, private route: ActivatedRoute) {}
   
@@ -77,7 +78,10 @@ export class CountryDetailsComponent implements OnInit {
       this.totalNumberOfAthletes = data;
     });
   }
-
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.windowWidth = window.innerWidth;
+  }
   /**
    * Navigates to the home page.
    */

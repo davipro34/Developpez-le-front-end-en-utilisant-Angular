@@ -17,20 +17,22 @@
   </div>
 </div>
 
-<div>
-  <ngx-charts-line-chart
-  [results]="lineChartData"
-  [view]="[700, 400]"
-  [xAxis]="true"
-  [yAxis]="true"
-  [legend]="false"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  [xAxisLabel]="'Dates'"
-  [yAxisLabel]="'Medals'">
-  </ngx-charts-line-chart>
+<div class="row">
+  <div class="chart">
+    <ngx-charts-line-chart
+      [results]="lineChartData"
+      [view]="[windowWidth, 400]"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="false"
+      [showXAxisLabel]="true"
+      [showYAxisLabel]="true"
+      [xAxisLabel]="'Dates'"
+      [yAxisLabel]="'Medals'">
+    </ngx-charts-line-chart>
+  </div>
 </div>
 
-<div>
+<div class="box">
   <button (click)="onGoHome()"> Return to Home Page </button>
 </div>

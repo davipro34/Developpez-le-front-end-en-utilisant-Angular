@@ -11,21 +11,22 @@
     <p>{{ numberOfCountries }}</p>
   </div>
 </div>
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
-<hr />
-<div id="charts">
-  <ngx-charts-pie-chart 
-    [results]="pieChartData$ | async"
-    (select)="onChartClick($event)"
-    [legend]="false"
-    [legendTitle]="'Olympic Participation Report'" 
-    [view]="[1200,400]"
-    [labels]="true"
-  >
-    <ng-template #tooltipTemplate let-model="model">
-      <div class="chart-label">{{ model.name }}</div>
-      <div class="chart-label"><i class="fa-solid fa-award"></i> {{ model.value }}</div>
-    </ng-template>
-       
-</ngx-charts-pie-chart>
+<!-- <p>{{ (olympics$ | async)?.length }} data loaded</p>
+<hr /> -->
+<div class="row">
+  <div class="chart">
+    <ngx-charts-pie-chart 
+      [results]="pieChartData$ | async"
+      (select)="onChartClick($event)"
+      [view]="[windowWidth,400]"
+      [legend]="false"
+      [legendTitle]="'Olympic Participation Report'" 
+      [labels]="true"
+    >
+      <ng-template #tooltipTemplate let-model="model">
+        <div class="chart-label">{{ model.name }}</div>
+        <div class="chart-label"><i class="fa-solid fa-award"></i> {{ model.value }}</div>
+      </ng-template>      
+    </ngx-charts-pie-chart>
+</div>
 </div>

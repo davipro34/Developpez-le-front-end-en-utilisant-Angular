@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Olympic } from 'src/app/core/models/Olympic';
@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   pieChartData$: Observable<PieChartData[]> = of([]);
   numberOfJos!: number;
   numberOfCountries!: number;
+  windowWidth = window.innerWidth;
 
   constructor(private olympicService: OlympicService, private router: Router) {}
 
@@ -38,7 +39,8 @@ export class HomeComponent implements OnInit {
     console.log(countryName);
   }
 
-  onGoDetails(): void {
-    this.router.navigateByUrl('CountryDetails');
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.windowWidth = window.innerWidth;
   }
 }
