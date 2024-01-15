@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { LineChartData } from 'src/app/core/models/LineChartData';
-import { tap } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-country-details',
@@ -27,7 +27,7 @@ export class CountryDetailsComponent implements OnInit {
     * If `params.get('countryName')` is not set it returns an empty string (`''`).
     * 
     */
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.pipe(take(1)).subscribe(params => {
       this.countryName = params.get('countryName') ?? '';
       //console.log(this.countryName)  // Logging : To view the result in the console.
     });
@@ -37,7 +37,7 @@ export class CountryDetailsComponent implements OnInit {
     * countryName value obtained from event (click) of pie chart
     */
     this.olympicService.getOlympicsByCountryName(this.countryName).pipe(
-      // tap(data => console.log(data)) // Logging : To view the result in the console.
+      take(1)
     ).subscribe(data => {
       this.lineChartData = data;
     });
@@ -49,7 +49,7 @@ export class CountryDetailsComponent implements OnInit {
      * `.subscribe(data => { this.numberOfParticipation = data; })` subscribes to the Observable and updates `this.numberOfParticipation` with the returned data.
      */
     this.olympicService.getParticipationByCountry(this.countryName).pipe(
-      // tap(data => console.log(data)) // Logging : To view the result in the console.
+      take(1)
     ).subscribe(data => {
       this.numberOfParticipation = data;
     });
@@ -61,7 +61,7 @@ export class CountryDetailsComponent implements OnInit {
     * `.subscribe(data => { this.totalNumberOfMedals = data; })` subscribes to the Observable and updates `this.totalNumberOfMedals` with the returned data.
     */
     this.olympicService.getTotalMedalsByCountry(this.countryName).pipe(
-      // tap(data => console.log(data)) // Logging : To view the result in the console.
+      take(1)
     ).subscribe(data => {
       this.totalNumberOfMedals = data;
     });
@@ -73,7 +73,7 @@ export class CountryDetailsComponent implements OnInit {
     * `.subscribe(data => { this.totalNumberOfAthletes = data; })` subscribes to the Observable and updates `this.totalNumberOfAthletes` with the returned data.
     */
     this.olympicService.getTotalAthletesByCountry(this.countryName).pipe(
-      // tap(data => console.log(data)) // Logging : To view the result in the console.
+      take(1)
     ).subscribe(data => {
       this.totalNumberOfAthletes = data;
     });

@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { PieChartData } from 'src/app/core/models/PieChartData';
@@ -21,13 +21,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.olympics$ = this.olympicService.getOlympics();
-    this.olympicService.getPieChartData().subscribe((data: PieChartData[]) => {
+    this.olympicService.getPieChartData().pipe(take(1)).subscribe((data: PieChartData[]) => {
       this.pieChartData$ = of(data);
     });
-    this.olympicService.getTotalJos().subscribe(data => {
+    this.olympicService.getTotalJos().pipe(take(1)).subscribe(data => {
       this.numberOfJos = data;
     });
-    this.olympicService.getTotalCountries().subscribe(data => {
+    this.olympicService.getTotalCountries().pipe(take(1)).subscribe(data => {
       this.numberOfCountries = data;
     });
   }
