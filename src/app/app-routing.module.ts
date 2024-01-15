@@ -10,8 +10,7 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'CountryDetails',
-    // path: 'CountryDetails/:countryName', // TODO = Obtain countryName value from event (click) of pie chart
+    path: 'country-details/:countryName',
     component: CountryDetailsComponent
   },
   {

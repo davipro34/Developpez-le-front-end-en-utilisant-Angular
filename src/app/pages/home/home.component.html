@@ -8,6 +8,7 @@
 <div id="charts">
   <ngx-charts-pie-chart 
     [results]="pieChartData$ | async"
+    (select)="onChartClick($event)"
     [legend]="false"
     [legendTitle]="'Olympic Participation Report'" 
     [view]="[1200,400]"
@@ -19,8 +20,4 @@
     </ng-template>
        
 </ngx-charts-pie-chart>
-</div>
-<hr />
-<div>
-  <button (click)="onGoDetails()"> Aller vers la page 'Country Details'</button>
 </div>

@@ -30,6 +30,13 @@ export class HomeComponent implements OnInit {
       this.numberOfCountries = data;
     });
   }
+  
+  onChartClick(data: any): void {
+    console.log(data);
+    const countryName = data.name;
+    this.router.navigate(['/country-details', countryName]);
+    console.log(countryName);
+  }
 
   onGoDetails(): void {
     this.router.navigateByUrl('CountryDetails');
