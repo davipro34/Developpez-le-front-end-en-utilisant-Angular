@@ -1,43 +1,54 @@
-:host {
-  display: grid;
-  justify-content: center;
-  align-items: center;
+@mixin boxStyle {
+  text-align: center;
+  border: 3px solid #2D909F; /* Définit la couleur et l'épaisseur de la bordure */
+  border-radius: 10px; /* Définit le rayon de l'arrondi des coins */
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.subtitle {
-  text-align: center;
-  background-color: #ffffff;
-  margin-bottom: 20px;
+.container {
+  display: grid; 
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+  grid-template-rows: 0.2fr 0.3fr 3.2fr 0.4fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . subtitle subtitle subtitle . ."
+    ". . jo . country . ."
+    "chart chart chart chart chart chart chart"
+    ". . . . . . ."; 
+}
+
+.subtitle { 
+  grid-area: subtitle;
+  color: white;
+  background-color: #2D909F;
+  @include boxStyle;
+}
+
+.jo { 
+  grid-area: jo;
+  @include boxStyle;
+}
+
+.country { 
+  grid-area: country;
+  @include boxStyle;
 }
 
 .chart {
-  display: flex;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  box-shadow: lightgray 4px 4px 20px;
-  margin-top: 20;
+  grid-area: chart;
+}
+
+::ng-deep .ngx-charts text {
+  font-size: 20px !important;
 }
 
 .chart-label {
   font-size: 16px;
-}
-
-::ng-deep .ngx-charts text {
-  font-size: 16px !important;
-}
-
-.box {
-  border: 1px solid black;
-  padding: 20px;
-  text-align: center;
-  flex: 1;
-}
-
-@media (max-width: 600px) {
-  :host {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
 }

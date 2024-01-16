@@ -1,38 +1,42 @@
-<div class="subtitle">
-  <h2>{{ countryName }}</h2>
-</div>
-
-<div style="display: flex; justify-content: space-between;">
-  <div class="box">
-    <p>Number of entries</p>
-    <p>{{ numberOfParticipation }}</p>
+<div class="container">
+  <div class="subtitle2">
+    <h2>{{ countryName }}</h2>
   </div>
-  <div class="box">
-    <p>Total number medals</p>
-    <p>{{ totalNumberOfMedals }}</p>
+  <ng-container *ngIf="!errorMessage; else error">
+    <!-- Afficher les détails du pays si les données ne sont pas vides -->
+    <div class="entries">
+      <p>Number of entries</p>
+      <p>{{ numberOfParticipation }}</p>
+    </div>
+    <div class="medals">
+      <p>Total number medals</p>
+      <p>{{ totalNumberOfMedals }}</p>
+    </div>
+    <div class="athletes">
+      <p>Total number of athletes</p>
+      <p>{{ totalNumberOfAthletes }}</p>
+    </div>
+    <div class="chart">
+      <ngx-charts-line-chart
+        [results]="lineChartData"
+        [view]="[windowWidth, 400]"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="false"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [xAxisLabel]="'Dates'"
+        [yAxisLabel]="'Medals'">
+      </ngx-charts-line-chart>
+    </div>
+  </ng-container>
+  <ng-template #error>
+    <div>
+      {{ errorMessage }}
+    </div>
+  </ng-template>
+  <!-- Le bouton de retour à la page d'accueil est toujours affiché -->
+  <div class="button">
+    <button (click)="onGoHome()"> Return to Home Page </button>
   </div>
-  <div class="box">
-    <p>Total number of athletes</p>
-    <p>{{ totalNumberOfAthletes }}</p>
-  </div>
-</div>
-
-<div class="row">
-  <div class="chart">
-    <ngx-charts-line-chart
-      [results]="lineChartData"
-      [view]="[windowWidth, 400]"
-      [xAxis]="true"
-      [yAxis]="true"
-      [legend]="false"
-      [showXAxisLabel]="true"
-      [showYAxisLabel]="true"
-      [xAxisLabel]="'Dates'"
-      [yAxisLabel]="'Medals'">
-    </ngx-charts-line-chart>
-  </div>
-</div>
-
-<div class="box">
-  <button (click)="onGoHome()"> Return to Home Page </button>
 </div>

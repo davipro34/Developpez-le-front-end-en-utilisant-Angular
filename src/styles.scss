@@ -23,3 +23,12 @@ button {
     box-shadow: lightgray 0 0 5px;
   }
 }
+
+.ngx-charts-tooltip-content.type-tooltip {
+  background-color: #2D909F !important; // modifie la couleur du tooltip
+  color: white !important; 
+  .tooltip-caret.position-top {
+      color: white !important;
+      border-top: 7px solid #2D909F !important;
+    }
+}
