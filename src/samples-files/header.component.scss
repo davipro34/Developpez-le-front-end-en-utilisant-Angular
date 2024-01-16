@@ -1,12 +1,22 @@
 :host {
   display: grid;
-  grid-template-columns:3;
-  grid-template-rows:2;
   width: auto;
   background-color: #EEE;
   justify-content: center;
   align-items: center;
+}
+
+.title {
   text-align: center;
+}
+
+.images {
+  display: grid;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
 }
 
 @media (max-width: 600px) {

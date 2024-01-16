@@ -43,9 +43,6 @@
 }
 
 .rounded-border {
-  display: grid;
-  justify-content: center;
-  align-items: center;
   border: 1px solid #000; /* Définit la couleur et l'épaisseur de la bordure */
   border-radius: 10px; /* Définit le rayon de l'arrondi des coins */
   padding: 10px; /* Définit l'espace entre le texte et la bordure */
