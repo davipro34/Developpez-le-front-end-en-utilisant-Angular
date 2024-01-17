@@ -19,6 +19,7 @@
         [results]="pieChartData$ | async"
         (select)="onChartClick($event)"
         [view]="[windowWidth,400]"
+        [scheme]="colorScheme"
         [legend]="false"
         [legendTitle]="'Olympic Participation Report'" 
         [labels]="true"
