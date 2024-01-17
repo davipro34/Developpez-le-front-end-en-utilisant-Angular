@@ -5,6 +5,7 @@ import { Olympic } from 'src/app/core/models/Olympic';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { PieChartData } from 'src/app/core/models/PieChartData';
 import { Participation } from 'src/app/core/models/Participation';
+import { Color, ScaleType } from '@swimlane/ngx-charts';
 
 @Component({
   selector: 'app-home',
@@ -93,4 +94,12 @@ export class HomeComponent implements OnInit {
   onResize(event: Event) {
     this.windowWidth = window.innerWidth;
   }
+
+  public colorScheme: Color = {
+    name: 'custom',
+    selectable: true,
+    group: ScaleType.Ordinal,
+    domain: ['#956065', '#b8cbe7', '#89a1db', '#793d52', '#9780a1'] // Remplacez ces valeurs par les couleurs que vous souhaitez utiliser
+  }
+
 }
